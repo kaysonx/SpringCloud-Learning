@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        input:
+          group: service-A
+          destination: greetings
+        output:
+          destination: greetings
+
