@@ -145,7 +145,7 @@ Feign:
 
 **核心**：
 
-Zull:
+Zuul:
 
 * 对外暴露服务，统一调度、过滤
 * 路由、过滤
@@ -240,7 +240,7 @@ Bus:
 ![图1](readme/structure2.jpg)
 
 
-###使用小结  
+### 使用小结  
 ```
 Spring Cloud 基于 Spring Boot, 因其自动化配置、快速开发、轻松部署的特性.
 
