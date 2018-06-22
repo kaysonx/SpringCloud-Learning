@@ -1,6 +1,10 @@
 spring:
   application:
     name: admin-server
+  security:
+    user:
+      password: "admin"
+      name: "admin"
 server:
   port: 18080
 eureka:

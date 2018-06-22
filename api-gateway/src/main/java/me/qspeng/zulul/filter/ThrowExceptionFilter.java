@@ -30,8 +30,8 @@ public class ThrowExceptionFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
-        logger.info("This filter, will throw a RuntimeException.");
-        throwException();
+//        logger.info("This filter, will throw a RuntimeException.");
+//        throwException();
         return null;
     }
 
