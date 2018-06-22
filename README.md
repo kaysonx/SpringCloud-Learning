@@ -1,6 +1,13 @@
 # Spring Cloud Demo
 >参考书籍：[《Spring Cloud微服务实战》](http://product.dangdang.com/25061625.html)
 
+
+## Spring Cloud
+>导图源文件在readme folder下
+
+![图0](readme/SpringCloud.png)
+
+
 ## 开发环境：
 
 * JDK 1.8
@@ -225,54 +232,56 @@ Bus:
 
 ## 总结
 
-**架构图1:**
+**基础架构图1:**
 ![图1](readme/structure1.jpg)
 
-**架构图2:**
+
+**基础架构图2:**
 ![图1](readme/structure2.jpg)
 
 
-Spring Cloud基于Spring Boot, 因其自动化配置、快速开发、轻松部署的特性.
+###使用小结  
+```
+Spring Cloud 基于 Spring Boot, 因其自动化配置、快速开发、轻松部署的特性.
 
-整个微服务架构分为内部和外部，分界线是 API 网关(Zull或者Gateway).
+整个微服务架构分为内部和外部，分界线是 API 网关(Zuul或者Gateway).
 
-内部体系中，最重要的是服务治理框架Eureka，需要高可用的组件(多实例)都需要向它注册.
+内部体系中，最重要的是服务治理框架 Eureka，需要通过服务名来实现服务间依赖的组件都需要向它注册，以确保能被其他服务发现或者发现其他服务.
 
 一个标准的Spring Cloud应用包含两个组件：Eureka Client && Hystrix.  
 
-如依赖其他服务则需要加入Ribbon 或者 Feign.  
+如依赖其他服务则需要加入 Ribbon 或者 Feign.  
 
 如果需要使用消息中间件(如Rabbit/Kafka), 需要引入 Stream.  
 
-如果需要动态更新配置、或者消息总线，则需要Config server && Bus.  
+如果需要动态更新配置、或者消息总线，则需要 Config Server && Bus.  
 
-如果需要集中管理、查看应用，则需要加入Spring Boot Admin && Client.
+如果需要集中管理应用，则需要加入Spring Boot Admin && Client.
 
-如果需要监控，可使用 Hystrix && Turbine.
+如果需要实现对单个实例、服务集群的监控，可使用 Hystrix && Turbine.
 
-所有的监控，都需要引入Actuator暴露对应的接口，以供其他采集程序使用.
+所有的监控都依赖于 Actuator 以暴露对应的接口，以供其他程序采集数据.
 
-如果需要服务调用链路追踪，则需要 Sleuth && Zipkin, 使用Zipkin Server, 实现可视化的监控界面.
+如果需要服务调用链路追踪，则需要 Sleuth, 配合 Zipkin, 实现可视化的监控管理界面.
 
-需要 Zull(或者 Gateway)充当网关，以实现统一入口，统一调度，请求过滤和路由.
+需要 Zuul(或者 Gateway)充当 API 网关，以实现统一入口，进行统一调度，请求过滤和路由.
 
-需要Eureka Server, 实现服务治理功能.
+需要 Eureka Server, 实现服务治理功能.
 
-除了工具类应用(例如Zipkin Server、Spring Boot Server、Hystrix Dashboard)，基本上都需要高可用.
+除了工具类应用(例如Zipkin Server、Spring Boot Server、Hystrix Dashboard)，基本上都需要高可用(多实例).
 
 实现高可用，Eureka Server通过节点互相注册， 而其他应用则通过Eureka来实现基于服务而不是实例的使用.
 
-建议所有应用注册Spring Boot admin，以及加入Sleuth && Zipkin Client， 以及暴露对应接口.
+建议所有应用注册 Spring Boot Admin，以及加入Sleuth && Zipkin Client， 以及暴露对应接口.
 
 建议所有应用加上安全验证(例如Security).
-
 
 **工具类应用**
 
 * Spring Boot Admin(配合 admin client)
-* Zipkin Server(配合sleuth 和 zipkin client)
+* Zipkin Server(配合sleuth && zipkin client)
 * Hystrix Dashboard(配合hystrix && turbine)
-
+```
 
 
 
